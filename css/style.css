@@ -4,6 +4,15 @@ body {
 
 
 #gameWindow {
+    display: flex;
+    flex-direction: row;
     background-color: #44B2B2;
 }
 
+#left {
+    width: 50vh;
+}
+
+#right {
+    width: 20vh;
+}
