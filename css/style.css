@@ -9,6 +9,7 @@ body {
     height: 100vh;
     display: flex;
     justify-content: center;
+    margin: 0;
 }
 
 main {
@@ -40,9 +41,10 @@ main {
 #game-box {
     background-color: #C4C4C4;
     box-shadow: 0.8em 0.8em 0.3em rgba(0, 0, 0, 0.25);
-    height: 35em;
-    width: 25em;
-    justify-self: center;
+    height: 75vh;
+    width: 35vw;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
@@ -59,4 +61,12 @@ main {
     width: 20vw;
     height: 10vw;
     background-color: #DBCA9E;
+}
+
+.square {
+    background-color: #fff;
+    width: 3.5vw;
+    height: 3.75vh;
+    border: 0.05em solid #c5c5c5;
+    box-sizing: border-box;
 }
