@@ -5,11 +5,11 @@
 
 body {
     background-color: #180427;
-    font-family: Ruda;
+    font-family: Ruda, sans-serif;
 }
 
 
-#gameWindow {
+#game-window {
     display: flex;
     flex-direction: row;
     background-color: #44B2B2;
@@ -20,7 +20,7 @@ body {
 }
 
 #right {
-    width: 20vh;
+    width: 30vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -28,7 +28,7 @@ body {
 }
 
 .yellow-box {
-    width: 10vh;
-    heigh: 10vh;
+    width: 20vh;
+    height: 10vh;
     background-color: #DBCA9E;
 }
