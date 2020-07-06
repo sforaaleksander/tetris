@@ -6,9 +6,16 @@
 body {
     background-color: #180427;
     font-family: Ruda, sans-serif;
+    height: 100vh;
     display: flex;
     justify-content: center;
 }
+
+main {
+    display: flex;
+}
+
+
 
 #game-window {
     display: flex;
@@ -27,7 +34,6 @@ body {
 }
 
 #left h1 {
-
     color: #BE2424;
 }
 
@@ -46,7 +52,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    /*align-content: stretch;*/
     justify-content: space-around;
 }
 
