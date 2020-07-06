@@ -22,5 +22,7 @@ body {
 }
 
 .yellow-box {
+    width: 10vh;
+    heigh: 10vh;
     background-color: #DBCA9E;
 }
