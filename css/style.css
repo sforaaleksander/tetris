@@ -16,22 +16,30 @@ main {
     display: flex;
 }
 
+h2, h3, h4, h5, h6 {
+    margin: 0;
+}
 
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-#game-window {
+.flex-row-center {
     display: flex;
     flex-direction: row;
-    background-color: #44B2B2;
     justify-content: center;
+}
+
+#game-window {
+    background-color: #44B2B2;
     align-self: center;
     width: 80vw;
 }
 
 #left {
     width: 50vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 #left h1 {
@@ -48,13 +56,9 @@ main {
     flex-wrap: wrap;
 }
 
-
 #right {
     height: 90vh;
     width: 30vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: space-around;
 }
 
@@ -62,6 +66,7 @@ main {
     width: 20vw;
     height: 10vw;
     background-color: #DBCA9E;
+    color: #9C6969;
 }
 
 .square {
@@ -72,3 +77,58 @@ main {
     border: 0.05em solid #c5c5c5;
     box-sizing: border-box;
 }
+
+#block-info h3 {
+    margin-top: 0.5em;
+}
+
+#next-block {
+    width: 7em;
+    height: 7em;
+    margin: 0.25em;
+    background-color: #796868;
+}
+
+#game-info {
+    justify-content: center;
+}
+
+#game-info h3 {
+    padding: 0.5em;
+}
+
+#music-control {
+    padding: 0.5em;
+}
+
+#music-control h3 {
+    padding: 0.1em 0.5em;
+}
+
+#on-music-btn {
+    background-color: #313030;
+    padding: 0.2em;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+#off-music-btn {
+    background-color: #898181;
+    padding: 0.2em;
+    cursor: pointer;
+    color: #ffffff;
+}
+
+#game-controls h5 {
+    margin-bottom: 0.3em;
+}
+
+#game-controls div {
+    align-items: center;
+}
+
+#game-controls div img {
+    height: 3em;
+    width: 3em;
+}
+

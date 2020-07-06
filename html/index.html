@@ -9,24 +9,42 @@
 </head>
 <body>
 <main>
-    <div id="game-window">
-        <div id="left">
+    <div id="game-window" class="flex-row-center">
+        <div id="left" class="flex-column-center">
             <h1>TETRIS</h1>
-            <div id="game-box">
-
-            </div>
+            <div id="game-box"></div>
         </div>
-        <div id="right">
-            <div class="yellow-box">
-                NEXT:
+        <div id="right" class="flex-column-center">
+            <div id="block-info" class="yellow-box flex-column-center">
+                <h3>NEXT BLOCK:</h3>
+                <div id="next-block"></div>
+            </div>
+            <div id="game-info" class="yellow-box flex-column-center">
+                <div class="flex-row-center">
+                    <h3>LEVEL:</h3>
+                    <h3 id="game-level">1</h3>
+                </div>
+                <div class="flex-row-center">
+                    <h3>SCORE:</h3>
+                    <h3 id="game-score">999</h3>
+                </div>
             </div>
             <div class="yellow-box">
-                LEVEL: <br/>
-                SCORE:
-            </div>
-            <div class="yellow-box">
-                MUSIC:
-                Controls: arrows & control for rotation
+                <div id="music-control" class="flex-row-center">
+                    <h3>MUSIC: </h3>
+                    <div id="on-music-btn">ON</div>
+                    <div id="off-music-btn">OFF</div>
+                </div>
+                <div id="game-controls" class="flex-column-center">
+                    <h5>Controls: </h5>
+                    <h6>rotate</h6>
+                    <div class="flex-row-center">
+                        <h6>move left</h6>
+                        <img src="../img/arrows.png" alt="left">
+                        <h6>move right</h6>
+                    </div>
+                    <h6>move down</h6>
+                </div>
             </div>
         </div>
     </div>
