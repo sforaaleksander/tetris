@@ -1,7 +1,5 @@
 export const COLS = 10;
 export const ROWS = 20;
-export const OFF_BUTTON = document.getElementById('off-music-btn');
-export const ON_BUTTON = document.getElementById('on-music-btn');
 
 export const DEFAULT_BLOCKS = {
     Z : [[[1,1,0],[0,1,1],[0,0,0]],[[0,0,1],[0,1,1],[0,1,0]],[[0,0,0],[1,1,0],[0,1,1]],[[0,1,0],[1,1,0],[1,0,0]]],

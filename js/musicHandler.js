@@ -4,8 +4,8 @@ export const ON_BUTTON = document.getElementById('on-music-btn');
 export class MusicHandler {
 
     musicEventListener() {
-        OFF_BUTTON.addEventListener('click', MusicHandler.musicOff);
-        ON_BUTTON.addEventListener('click', MusicHandler.musicOn);
+        OFF_BUTTON.addEventListener('click', this.musicOff);
+        ON_BUTTON.addEventListener('click', this.musicOn);
     }
 
     musicOff(){
