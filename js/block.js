@@ -1,5 +1,7 @@
+import {ROWS, COLS} from "./constants.js";
+
 export class Block {
-    constructor(color, states){
+    constructor(color, states) {
         // this.y = 0;
         this.color = color;
         this.states = states;
@@ -9,37 +11,53 @@ export class Block {
         this.activeState = this.states[this.stateNo];
     }
 
-    moveDown(){
+    moveDown() {
         console.log('move down');
         console.log(this);
-        this.unDraw();
-        this.y++;
-        this.draw();
+        if (!this.detectCollision(0, 1, this.activeState)) {
+            this.unDraw();
+            this.y++;
+            this.draw();
+        } else {
+            this.lock();//todo
+        }
+
     };
 
-    moveRight(){
+    moveRight() {
         console.log('move right');
-        this.unDraw();
-        this.x++;
-        this.draw();
+        if (!this.detectCollision(1, 0, this.activeState)) {
+            this.unDraw();
+            this.x++;
+            this.draw();
+        }
     };
 
-    moveLeft(){
+    moveLeft() {
         console.log('move left');
-
-        this.unDraw();
-        this.x--;
-        this.draw();
+        if (!this.detectCollision(-1, 0, this.activeState)) {
+            this.unDraw();
+            this.x--;
+            this.draw();
+        }
     };
 
-    rotate(){
-        this.unDraw();
-        this.stateNo = (this.stateNo + 1)%this.states.length;
-        this.activeState = this.states[this.stateNo];
-        this.draw();
+    rotate() {
+        let nextActiveState = this.states[(this.stateNo + 1) % this.states.length];
+        let bounceFromWall = 0;
+        if (this.detectCollision(0,0, nextActiveState)){
+            bounceFromWall = this.x>COLS/2 ? -1 : 1 ; //todo do not work for long one close to right wall
+        }
+        if (!this.detectCollision(bounceFromWall, 0, nextActiveState)) {
+            this.unDraw();
+            this.x += bounceFromWall;
+            this.stateNo = (this.stateNo + 1) % this.states.length;
+            this.activeState = this.states[this.stateNo];
+            this.draw();
+        }
     };
 
-    drop(){
+    drop() {
         this.y++;
     };
 
@@ -49,7 +67,7 @@ export class Block {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
                     try {
-                        let square = document.querySelector(`[x="${this.x+i}"][y="${this.y+j}"]`);
+                        let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
                         square.classList.add(this.color);
                     } catch (e) {
 
@@ -59,20 +77,44 @@ export class Block {
         }
     };
 
-    unDraw(){
+    unDraw() {
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
                     try {
-                        let square = document.querySelector(`[x="${this.x+i}"][y="${this.y+j}"]`);
+                        let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
                         square.classList.remove(this.color);
-                    }catch (e) {
+                    } catch (e) {
 
                     }
                 }
             }
         }
     };
-    detectCollision(){};
-    lock(){};
+
+    detectCollision(x, y, block) {
+        for (let i = 0; i < block.length; i++) {
+            for (let j = 0; j < block.length; j++) {
+                if (!block[i][j]) {
+                    continue;
+                }
+                let newX = this.x + i + x;
+                let newY = this.y + j + y;
+                if (newX < 0 || newX >= COLS || newY >= ROWS) {
+                    return true;
+                }
+                if (newY < 0) {
+                    continue;
+                }
+                let square = document.querySelector(`[x="${newX}"][y="${newY}"]`);
+                if (square.classList.contains('locked')) { //todo
+                    return true;
+                }
+            }
+        }
+        return false;
+    };
+
+    lock() {
+    };
 }
