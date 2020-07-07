@@ -10,23 +10,73 @@ const L = [[[0,1,0],[0,1,0],[0,1,1]],[[0,0,0],[1,1,1],[1,0,0]],[[1,1,0],[0,1,0],
 const I = [[[0,1,0,0],[0,1,0,0],[0,1,0,0],[0,1,0,0]],[[0,0,0,0],[1,1,1,1],[0,0,0,0],[0,0,0,0]],[[0,0,1,0],[0,0,1,0],[0,0,1,0],[0,0,1,0]],[[0,0,0,0],[0,0,0,0],[1,1,1,1],[0,0,0,0]]];
 const O = [[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]];
 
-function main() {
-    createGrid();
-    musicEventListener();
+class Game {
+    constructor() {
+        this.isRunning = true
+    }
+
+    startGame(){};
+    userControl(){};
 }
 
-function createGrid() {
-    for (let i = 0; i < ROWS; i++) {
-        for (let j = 0; j < COLS; j++) {
-            const square = document.createElement("div");
-            square.className = "square";
-            square.setAttribute("x", j.toString());
-            square.setAttribute("y", i.toString());
-
-            const gameBox = document.getElementById("game-box");
-            gameBox.appendChild(square);
-        }
+class Block {
+    constructor(color, states){
+        this.color = color;
+        this.states = states;
+        this.activeState = 0;
+        this.stateNo = 0;
     }
+
+    moveDown(){};
+    moveRight(){};
+    moveLeft(){};
+    rotate(){};
+    drop();
+    draw();
+    unDraw();
+    detectCollision();
+    lock();
+}
+
+class Square {
+    constructor(Coords) {
+        this.coords = Coords;
+        this.isEmpty = true;
+    }
+}
+
+class Coords {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
+class BoardHandler {
+    createGrid() {
+            for (let i = 0; i < ROWS; i++) {
+                for (let j = 0; j < COLS; j++) {
+                    const square = document.createElement("div");
+                    square.className = "square";
+                    square.setAttribute("x", j.toString());
+                    square.setAttribute("y", i.toString());
+
+                    const gameBox = document.getElementById("game-box");
+                    gameBox.appendChild(square);
+                }
+            }
+    };
+    createSquare(){};
+    removeFullRow(){}
+}
+
+function main() {
+    const boardHandler = new BoardHandler();
+    boardHandler.createGrid();
+    // alert("Start game!");
+    musicEventListener();
+    const game = new Game();
+    game.startGame();
 }
 
 function musicEventListener() {
