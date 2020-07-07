@@ -10,6 +10,7 @@ export class Block {
     }
 
     moveDown(){
+        console.log('movedown');
         this.unDraw();
         this.y++;
         this.draw();
