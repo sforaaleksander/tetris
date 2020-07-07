@@ -3,6 +3,42 @@
     src: url("../fonts/Ruda/static/Ruda-Medium.ttf");
 }
 
+.navy-blue {
+    background-color: #260F38
+}
+
+.purple {
+    background-color: #491744;
+}
+
+.deep-blue {
+    background-color: #180427;
+}
+
+.aquamarine {
+    background-color: #47FC90;
+}
+
+.yellow {
+    background-color: #E6EA2B;
+}
+
+.orange {
+    background-color: #FC8129;
+}
+
+.red {
+    background-color: #BE2424;
+}
+
+.light-blue {
+    background-color: #255D9E;
+}
+
+.scarlet {
+    background-color: #EB1717;
+}
+
 body {
     background-color: #180427;
     font-family: Ruda, sans-serif;
