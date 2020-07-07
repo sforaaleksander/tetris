@@ -14,16 +14,4 @@ export class ControlHandler {
         document.addEventListener('keydown', (e) => {this.arrows[e.keyCode]();
         });
     }
-
-    // addControlsListener() {
-    //     document.addEventListener('keydown', this.makeAction);
-    // }
-    //
-    // makeAction(e) {
-    //     console.log(e.keyCode);
-    //     console.log(this);
-    //
-    //     this.arrows[e.keyCode]();
-    // }
-
 }
