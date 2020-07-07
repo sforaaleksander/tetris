@@ -14,9 +14,23 @@ export class Block {
         this.y++;
         this.draw();
     };
-    moveRight(){};
-    moveLeft(){};
-    rotate(){};
+
+    moveRight(){
+        this.unDraw();
+        this.x++;
+        this.draw();
+    };
+
+    moveLeft(){
+        this.unDraw();
+        this.x--;
+        this.draw();
+    };
+
+    rotate(){
+        console.log('rotate')
+    };
+
     drop(){
         this.y++;
     };
@@ -30,7 +44,17 @@ export class Block {
             }
         }
     };
-    unDraw(){};
+
+    unDraw(){
+        for (let i = 0; i < this.activeState.length; i++) {
+            for (let j = 0; j < this.activeState.length; j++) {
+                if (this.activeState[i][j]) {
+                    let square = document.querySelector(`[x="${i}"][y="${j}"]`);
+                    square.classList.remove(this.color);
+                }
+            }
+        }
+    };
     detectCollision(){};
     lock(){};
 }
