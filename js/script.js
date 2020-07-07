@@ -46,11 +46,11 @@ class Block {
     moveRight(){};
     moveLeft(){};
     rotate(){};
-    drop();
-    draw();
-    unDraw();
-    detectCollision();
-    lock();
+    drop(){};
+    draw(){};
+    unDraw(){};
+    detectCollision(){};
+    lock(){};
 }
 
 class Square {
