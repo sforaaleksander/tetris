@@ -5,6 +5,7 @@ import * as constantsJS from "./constants.js";
 import * as blockJS from "./block.js";
 import * as boardHandlerJS from "./boardHandler.js";
 import * as musicHandlerJS from '../js/musicHandler.js';
+import {BlockFactory} from "./blockFactory.js";
 
 function main() {
     const boardHandler = new boardHandlerJS.BoardHandler();
@@ -13,6 +14,17 @@ function main() {
     const game = new gameJS.Game();
     musicHandlerJS.MusicHandler.prototype.musicEventListener()
     game.startGame();
+    let block = BlockFactory.prototype.getRandomBlock();
+    block.draw();
+    // block.moveDown();
+    // block.draw();
+    // block.moveDown();
+    // block.draw();
+    // block.moveDown();
+    // block.draw();
+    // block.moveDown();
+    // block.draw();
+    // block.moveDown();
 }
 
 main()

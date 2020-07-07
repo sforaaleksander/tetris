@@ -3,6 +3,15 @@
     src: url("../fonts/Ruda/static/Ruda-Medium.ttf");
 }
 
+.square {
+    background-color: #fff;
+    /*width: 3.5vw;*/
+    width: 4.5vh;
+    height: 3.75vh;
+    border: 0.05em solid #c5c5c5;
+    box-sizing: border-box;
+}
+
 .navy-blue {
     background-color: #260F38
 }
@@ -103,15 +112,6 @@ h2, h3, h4, h5, h6 {
     height: 10vw;
     background-color: #DBCA9E;
     color: #9C6969;
-}
-
-.square {
-    background-color: #fff;
-    /*width: 3.5vw;*/
-    width: 4.5vh;
-    height: 3.75vh;
-    border: 0.05em solid #c5c5c5;
-    box-sizing: border-box;
 }
 
 #block-info h3 {
