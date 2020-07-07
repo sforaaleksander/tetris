@@ -1,17 +1,17 @@
-import * as square from "./square.js";
-import * as coords from "./coords.js";
-import * as game from "./game.js";
-import * as constants from "./constants.js";
-import * as block from "./block.js";
-import * as boardHandler from "./boardHandler.js";
-import * as musicHandler from '../js/musicHandler.js';
+import * as squareJS from "./square.js";
+import * as coordsJS from "./coords.js";
+import * as gameJS from "./game.js";
+import * as constantsJS from "./constants.js";
+import * as blockJS from "./block.js";
+import * as boardHandlerJS from "./boardHandler.js";
+import * as musicHandlerJS from '../js/musicHandler.js';
 
 function main() {
-    const boardHandler = new boardHandler.BoardHandler();
+    const boardHandler = new boardHandlerJS.BoardHandler();
     boardHandler.createGrid();
     // alert("Start game!");
-    const game = new game.Game();
-    musicHandler.MusicHandler.prototype.musicEventListener()
+    const game = new gameJS.Game();
+    musicHandlerJS.MusicHandler.prototype.musicEventListener()
     game.startGame();
 }
 
