@@ -11,6 +11,7 @@ export class Block {
 
     moveDown(){
         console.log('movedown');
+        console.log(this);
         this.unDraw();
         this.y++;
         this.draw();
