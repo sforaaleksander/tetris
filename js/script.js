@@ -44,7 +44,7 @@ function musicOn() {
 
         let source = document.createElement('source');
         let audioBox = document.getElementById('audio');
-        source.setAttribute('src', 'http://95.216.116.119/sg/c6/tZ446Zt_7PLXV5-f52fzlA,1594063141/yt:MyNzcqOGUmA-1/%5B1HOUR%5D%20TETRHI%20HI%20HI%20HI%20HI%20HIIIIS.mp3');
+        source.setAttribute('src', 'http://95.216.116.119/cr/v6/IUg4eYEafllAIXKRfQpA2w,1594109354/yt:MyNzcqOGUmA-1/%5B1HOUR%5D%20TETRHI%20HI%20HI%20HI%20HI%20HIIIIS.mp3');
         source.setAttribute('type','audio/mpeg');
         audioBox.appendChild(source);
     }
