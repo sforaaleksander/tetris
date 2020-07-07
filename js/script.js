@@ -13,16 +13,17 @@ const DEFAULT_BLOCKS = {
     O : [[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]],[[0,0,0,0],[0,1,1,0],[0,1,1,0],[0,0,0,0]]]
 }
 
-
-const NAVY_BLUE = 'navy-blue';
-const DEEP_BLUE = 'deep-blue';
-const PURPLE = 'purple';
-const AQUAMARINE = 'aquamarine';
-const YELLOW = 'yellow';
-const ORANGE = 'orange';
-const RED = 'red';
-const LIGHT_BLUE = 'light-blue';
-const SCARLET = 'scarlet';
+const COLORS = {
+    NAVY_BLUE: 'navy-blue',
+    DEEP_BLUE: 'deep-blue',
+    PURPLE: 'purple',
+    AQUAMARINE: 'aquamarine',
+    YELLOW: 'yellow',
+    ORANGE: 'orange',
+    RED: 'red',
+    LIGHT_BLUE: 'light-blue',
+    SCARLET: 'scarlet',
+}
 
 class Game {
     constructor() {
