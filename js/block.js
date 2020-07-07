@@ -10,7 +10,7 @@ export class Block {
     }
 
     moveDown(){
-        console.log('movedown');
+        console.log('move down');
         console.log(this);
         this.unDraw();
         this.y++;
@@ -18,12 +18,15 @@ export class Block {
     };
 
     moveRight(){
+        console.log('move right');
         this.unDraw();
         this.x++;
         this.draw();
     };
 
     moveLeft(){
+        console.log('move left');
+
         this.unDraw();
         this.x--;
         this.draw();
