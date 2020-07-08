@@ -9,7 +9,7 @@ export class Block {
         this.y = -this.states[0][0].length;
         this.stateNo = 0;
         this.activeState = this.states[this.stateNo];
-        this.locked = false;
+        this.isLocked = false;
     }
 
     moveDown() {
@@ -131,4 +131,40 @@ export class Block {
         }
         return lockedOutOfBorder;
     };
+
+    getX() {
+        return this.x
+    }
+
+    getY() {
+        return this.y;
+    }
+
+    resetY() {
+        this.y = -this.states[0][0].length;
+    }
+
+    resetX() {
+        this.x = 3;
+    }
+
+    setColor(color) {
+        this.color = color;
+    }
+
+    setState(states){
+        this.states = states;
+    }
+
+    setIsLockedToFalse() {
+        this.isLocked = false;
+    }
+
+    setStatesNoTo0() {
+        this.stateNo =0;
+    }
+
+    setActiveState() {
+        this.activeState = this.states[this.stateNo];
+    }
 }

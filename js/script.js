@@ -16,7 +16,7 @@ let game;
     game.startGame();
 
     block = BlockFactory.prototype.getRandomBlock();
-    nextBlock = BlockFactory.prototype.getRandomBlock();
+    nextBlock = BlockFactory.prototype.getRandomBlock2();
     controlHandler = new handlers.ControlHandler(block);
     block.draw();
     controlHandler.addControlsListener();
@@ -34,12 +34,18 @@ function mainLoop(){
             alert("GameOverXD");
             return;
         }
-        controlHandler.removeControlsListener();
-        block = nextBlock;
-        nextBlock = BlockFactory.prototype.getRandomBlock();
-        controlHandler = new handlers.ControlHandler(block);
+        nextBlock = BlockFactory.prototype.getRandomBlock2();
+        // controlHandler.removeControlsListener();
+        block.setState(nextBlock[1]);
+        block.setColor(nextBlock[0]);
+        // controlHandler = new handlers.ControlHandler(block);
+        block.resetX();
+        block.resetY();
+        block.setIsLockedToFalse();
+        block.setStatesNoTo0();
+        block.setActiveState();
         block.draw();
-        controlHandler.addControlsListener();
+        // controlHandler.addControlsListener();
     }
 }
 
