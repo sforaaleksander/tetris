@@ -111,19 +111,19 @@ export class Block {
     lock() {
         console.log('locking');
         this.isLocked = true;
-        let lockedOutOfBorder = false;
+        let lockedOnBoard = true;
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
                     let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
                     square.classList.add("locked");
-                    if ((this.y + j) > 0) {
-                        lockedOutOfBorder = true;
+                    if (!(this.y + j) > 0) {
+                        lockedOnBoard = false;
                     }
                 }
             }
         }
-        return lockedOutOfBorder;
+        return lockedOnBoard;
     };
 
     resetBlock(states, color) {
