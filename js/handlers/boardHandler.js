@@ -38,7 +38,7 @@ export class BoardHandler {
             squares[x].setAttribute("x", i.toString());
             squares[x].setAttribute("y", j.toString());
             i++
-            if (i === 10) {
+            if (i === COLS) {
                 i=0;
                 j++;
             }
@@ -62,13 +62,16 @@ export class BoardHandler {
                 let squareLocked = square.classList.contains("locked");
                 if (!squareLocked) {
                     fullRow = false;
+
                     break;
                 }
             }
+            console.log('checking row' + i)
             if (fullRow){
                 this.removeFullRow(i);
                 this.insertBlankRow();
                 this.recalculateCoords();
+                i++;
             }
         }
     };
