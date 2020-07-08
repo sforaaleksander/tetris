@@ -40,8 +40,7 @@ function mainLoop(){
             alert("GameOverXD");
             return;
         }
-        // delete controlHandler;
-        // controlHandler.removeControlsListener();
+        controlHandler.removeControlsListener();
         block = nextBlock;
         nextBlock = BlockFactory.prototype.getRandomBlock();
         controlHandler = new ControlHandler(block);
