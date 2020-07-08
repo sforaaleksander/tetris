@@ -6,10 +6,11 @@ let block;
 let nextStatesAndColor;
 let controlHandler;
 let game;
+let loop;
 
 (() => {
     initialize();
-    setInterval(mainLoop, 1000);
+    loop = setInterval(mainLoop,500);
 })();
 
 function initialize(){
@@ -31,9 +32,9 @@ function mainLoop(){
     let canMove = block.moveDown();
     if (block.isLocked) {
         if (!canMove) {
-            game.isRunning = false;
-            clearInterval(mainLoop);
+            clearInterval(loop);
             alert("GameOverXD");
+            game.isRunning = false;
             return;
         }
         nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
