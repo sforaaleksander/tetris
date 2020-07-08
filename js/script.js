@@ -11,7 +11,7 @@ let nextBlock;
 let controlHandler;
 let game;
 
-function main() {
+(() => {
     const boardHandler = new handlers.BoardHandler();
     boardHandler.createGrid();
     // alert("Start game!");
@@ -26,7 +26,7 @@ function main() {
     controlHandler.addControlsListener();
 
     setInterval(mainLoop, 1000);
-}
+})();
 
 
 function mainLoop(){
@@ -47,4 +47,3 @@ function mainLoop(){
 }
 
 
-main()
