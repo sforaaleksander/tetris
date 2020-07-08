@@ -1,9 +1,5 @@
-import * as squareJS from "./square.js";
-import * as coordsJS from "./coords.js";
-import * as gameJS from "./game.js";
-import * as constantsJS from "./constants.js";
-import * as blockJS from "./block.js";
-import {BlockFactory} from "./blockFactory.js";
+import * as gameJS from "./models/game.js";
+import {BlockFactory} from "./models/blockFactory.js";
 import * as handlers from './handlers/handlersBundle.js';
 
 let block;
@@ -41,7 +37,7 @@ function mainLoop(){
         controlHandler.removeControlsListener();
         block = nextBlock;
         nextBlock = BlockFactory.prototype.getRandomBlock();
-        controlHandler = new ControlHandler(block);
+        controlHandler = new handlers.ControlHandler(block);
         block.draw();
         controlHandler.addControlsListener();
     }

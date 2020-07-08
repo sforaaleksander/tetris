@@ -1,4 +1,4 @@
-import {ROWS, COLS} from "../constants.js";
+import {ROWS, COLS} from "../models/constants.js";
 
 export class BoardHandler {
     createGrid() {
