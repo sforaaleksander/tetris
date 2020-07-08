@@ -117,15 +117,18 @@ export class Block {
     lock() {
         console.log('locking');
         this.isLocked = true;
+        let lockedOutOfBorder = false;
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
                     let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
                     square.classList.add("locked");
-                    return (this.y + j) > 0;
+                    if ((this.y + j) > 0) {
+                        lockedOutOfBorder = true;
+                    }
                 }
             }
         }
-
+        return lockedOutOfBorder;
     };
 }
