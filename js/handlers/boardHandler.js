@@ -2,10 +2,10 @@ import {ROWS, COLS} from "../models/constants.js";
 
 export class BoardHandler {
     createGrid() {
+        const gameBox = document.getElementById("game-box");
         for (let i = 0; i < ROWS; i++) {
             for (let j = 0; j < COLS; j++) {
                 const squareDiv = this.createSquareDiv(j, i);
-                const gameBox = document.getElementById("game-box");
                 gameBox.appendChild(squareDiv);
             }
         }
@@ -19,7 +19,34 @@ export class BoardHandler {
         return squareDiv;
     };
 
+    insertBlankRow(){
+        const gameBox = document.getElementById("game-box");
+        for (let i=0; i<COLS;i++){
+            const j = 0;
+            const squareDiv = this.createSquareDiv(i, j);
+            gameBox.insertBefore(squareDiv, gameBox.firstChild);
+        }
+    }
+
+    recalculateCoords(){
+        const squares = document.querySelectorAll('.square');
+        console.log("recalculating coords");
+        console.log(squares);
+        let i = 0;
+        for (let i = 0; i < ROWS; i++) {
+            for (let j = 0; j < COLS; j++) {
+                squares[i].setAttribute("x", j.toString());
+                squares[i].setAttribute("y", i.toString());
+                i++;
+            }
+        }
+    }
+
     removeFullRow(rowNo){
+        let rowOfSquares = document.querySelectorAll(`[y="${rowNo}"]`);
+        for (let square of rowOfSquares){
+            square.remove();
+        }
         console.log("FOUND A FULL ROW NUMBER: " + rowNo);
     }
 
@@ -36,6 +63,8 @@ export class BoardHandler {
             }
             if (fullRow){
                 this.removeFullRow(i);
+                this.insertBlankRow();
+                this.recalculateCoords();
             }
         }
     };
