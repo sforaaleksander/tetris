@@ -14,15 +14,14 @@ export class Block {
 
     moveDown() {
         console.log('move down');
-        console.log(this);
         if (!this.detectCollision(0, 1, this.activeState)) {
             this.unDraw();
             this.y++;
             this.draw();
+            return true;
         } else {
-            this.lock();//todo
+            return this.lock();
         }
-
     };
 
     moveRight() {
@@ -46,8 +45,8 @@ export class Block {
     rotate() {
         let nextActiveState = this.states[(this.stateNo + 1) % this.states.length];
         let bounceFromWall = 0;
-        if (this.detectCollision(0,0, nextActiveState)){
-            bounceFromWall = this.x>COLS/2 ? -1 : 1 ; //todo do not work for long one close to right wall
+        if (this.detectCollision(0, 0, nextActiveState)) {
+            bounceFromWall = this.x > COLS / 2 ? -1 : 1; //todo do not work for long one close to right wall
         }
         if (!this.detectCollision(bounceFromWall, 0, nextActiveState)) {
             this.unDraw();
@@ -63,7 +62,6 @@ export class Block {
     };
 
     draw() {
-        console.log(this)
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
@@ -108,7 +106,7 @@ export class Block {
                     continue;
                 }
                 let square = document.querySelector(`[x="${newX}"][y="${newY}"]`);
-                if (square.classList.contains('locked')) { //todo
+                if (square.classList.contains('locked')) {
                     return true;
                 }
             }
@@ -117,6 +115,17 @@ export class Block {
     };
 
     lock() {
+        console.log('locking');
         this.isLocked = true;
+        for (let i = 0; i < this.activeState.length; i++) {
+            for (let j = 0; j < this.activeState.length; j++) {
+                if (this.activeState[i][j]) {
+                    let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
+                    square.classList.add("locked");
+                    return (this.y + j) > 0;
+                }
+            }
+        }
+
     };
 }

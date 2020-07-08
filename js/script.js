@@ -16,7 +16,7 @@ let game;
 function main() {
     const boardHandler = new boardHandlerJS.BoardHandler();
     boardHandler.createGrid();
-    // alert("Start game!");
+    alert("Start game!");
     game = new gameJS.Game();
     musicHandlerJS.MusicHandler.prototype.musicEventListener()
     game.startGame();
@@ -34,7 +34,12 @@ function main() {
 function mainLoop(){
     block.drop();
     if (block.isLocked) {
-        console.log("locked!");
+        if (!block.moveDown()) {
+            game.isRunning = false;
+            clearInterval(mainLoop);
+            alert("GameOverXD");
+            return;
+        }
         // delete controlHandler;
         // controlHandler.removeControlsListener();
         block = nextBlock;
@@ -42,9 +47,6 @@ function mainLoop(){
         controlHandler = new ControlHandler(block);
         block.draw();
         controlHandler.addControlsListener();
-    }
-    if (!game.isRunning) {
-        alert("GameOverXD");
     }
 }
 

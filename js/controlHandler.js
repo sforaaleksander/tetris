@@ -12,14 +12,12 @@ export class ControlHandler {
 
     addControlsListener() {
         document.addEventListener('keydown', (e) => {
-            console.log(this)
             this.arrows[e.keyCode]();
         });
     }
 
     removeControlsListener(){
         document.removeEventListener('keydown', (e) => {
-            console.log(this)
             this.arrows[e.keyCode]();
         });
     }
