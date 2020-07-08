@@ -10,6 +10,7 @@ export class BoardHandler {
             }
         }
     };
+
     createSquareDiv(j, i){
         const squareDiv = document.createElement("div");
         squareDiv.className = "square";
@@ -17,5 +18,25 @@ export class BoardHandler {
         squareDiv.setAttribute("y", i.toString());
         return squareDiv;
     };
-    removeFullRow(){}
+
+    removeFullRow(rowNo){
+        console.log("FOUND A FULL ROW NUMBER: " + rowNo);
+    }
+
+    checkFullRow() {
+        for (let i = ROWS-1; i >= 0; i--) {
+            let fullRow = true;
+            for (let j = COLS-1; j >= 0; j--) {
+                let square = document.querySelector(`[x="${j}"][y="${i}"]`);
+                let squareLocked = square.classList.contains("locked");
+                if (!squareLocked) {
+                    fullRow = false;
+                    break;
+                }
+            }
+            if (fullRow){
+                this.removeFullRow(i);
+            }
+        }
+    };
 }

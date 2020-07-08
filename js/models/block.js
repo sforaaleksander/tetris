@@ -1,4 +1,5 @@
 import {ROWS, COLS} from "./constants.js";
+import {BoardHandler} from "../handlers/boardHandler.js";
 
 export class Block {
     constructor(states, color) {
@@ -123,6 +124,7 @@ export class Block {
                 }
             }
         }
+        BoardHandler.prototype.checkFullRow();
         return lockedOnBoard;
     };
 

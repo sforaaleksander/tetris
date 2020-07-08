@@ -26,7 +26,7 @@ export class Game {
 
     mainLoop(){
         let canMove = block.moveDown();
-        if (block.getIsLocked()) {
+        if (block.isLocked) {
             if (!canMove) {
                 clearInterval(loop);
                 alert("GameOverXD");
