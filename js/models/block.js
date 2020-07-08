@@ -1,7 +1,7 @@
 import {ROWS, COLS} from "./constants.js";
 
 export class Block {
-    constructor(color, states) {
+    constructor(states, color) {
         this.color = color;
         this.states = states;
         this.x = 3;

@@ -3,7 +3,7 @@ import {BlockFactory} from "./models/blockFactory.js";
 import * as handlers from './handlers/handlersBundle.js';
 
 let block;
-let nextBlock;
+let nextStatesAndColor;
 let controlHandler;
 let game;
 
@@ -21,7 +21,7 @@ function initialize(){
     game.startGame();
 
     block = BlockFactory.prototype.getRandomBlock();
-    nextBlock = BlockFactory.prototype.getRandomBlock2();
+    nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
     controlHandler = new handlers.ControlHandler(block);
     controlHandler.addControlsListener();
 }
@@ -36,9 +36,9 @@ function mainLoop(){
             alert("GameOverXD");
             return;
         }
-        nextBlock = BlockFactory.prototype.getRandomBlock2();
-        const color = nextBlock[0];
-        const states = nextBlock[1];
+        nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
+        const color = nextStatesAndColor[0];
+        const states = nextStatesAndColor[1];
         block.resetBlock(states, color);
     }
 }
