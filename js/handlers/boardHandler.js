@@ -33,13 +33,17 @@ export class BoardHandler {
         console.log("recalculating coords");
         console.log(squares);
         let i = 0;
-        for (let i = 0; i < ROWS; i++) {
-            for (let j = 0; j < COLS; j++) {
-                squares[i].setAttribute("x", j.toString());
-                squares[i].setAttribute("y", i.toString());
-                i++;
+        let j = 0;
+        for (let x=0; x < squares.length; x++){
+            squares[x].setAttribute("x", i.toString());
+            squares[x].setAttribute("y", j.toString());
+            i++
+            if (i === 10) {
+                i=0;
+                j++;
             }
         }
+
     }
 
     removeFullRow(rowNo){
