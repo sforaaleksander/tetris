@@ -8,26 +8,45 @@ import * as musicHandlerJS from './musicHandler.js';
 import {BlockFactory} from "./blockFactory.js";
 import {ControlHandler} from "./controlHandler.js";
 
+let block;
+let nextBlock;
+let controlHandler;
+let game;
+
 function main() {
     const boardHandler = new boardHandlerJS.BoardHandler();
     boardHandler.createGrid();
     // alert("Start game!");
-    const game = new gameJS.Game();
+    game = new gameJS.Game();
     musicHandlerJS.MusicHandler.prototype.musicEventListener()
     game.startGame();
-    let block = BlockFactory.prototype.getRandomBlock();
-    let controlHandler = new ControlHandler(block);
+
+    block = BlockFactory.prototype.getRandomBlock();
+    nextBlock = BlockFactory.prototype.getRandomBlock();
+    controlHandler = new ControlHandler(block);
     block.draw();
-    controlHandler.addControlsListener()
-    // block.moveDown();
-    // block.draw();
-    // block.moveDown();
-    // block.draw();
-    // block.moveDown();
-    // block.draw();
-    // block.moveDown();
-    // block.draw();
-    // block.moveDown();
+    controlHandler.addControlsListener();
+
+    setInterval(mainLoop, 1000);
 }
+
+
+function mainLoop(){
+    block.drop();
+    if (block.isLocked) {
+        console.log("locked!");
+        // delete controlHandler;
+        // controlHandler.removeControlsListener();
+        block = nextBlock;
+        nextBlock = BlockFactory.prototype.getRandomBlock();
+        controlHandler = new ControlHandler(block);
+        block.draw();
+        controlHandler.addControlsListener();
+    }
+    if (!game.isRunning) {
+        alert("GameOverXD");
+    }
+}
+
 
 main()

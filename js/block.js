@@ -9,6 +9,7 @@ export class Block {
         this.y = -this.states[0][0].length;
         this.stateNo = 0;
         this.activeState = this.states[this.stateNo];
+        this.locked = false;
     }
 
     moveDown() {
@@ -58,7 +59,7 @@ export class Block {
     };
 
     drop() {
-        this.y++;
+        this.moveDown();
     };
 
     draw() {
@@ -116,5 +117,6 @@ export class Block {
     };
 
     lock() {
+        this.isLocked = true;
     };
 }
