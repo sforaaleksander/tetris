@@ -2,7 +2,6 @@ import {ROWS, COLS} from "./constants.js";
 
 export class Block {
     constructor(color, states) {
-        // this.y = 0;
         this.color = color;
         this.states = states;
         this.x = 3;
@@ -57,10 +56,6 @@ export class Block {
         }
     };
 
-    drop() {
-        this.moveDown();
-    };
-
     draw() {
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
@@ -84,7 +79,6 @@ export class Block {
                         let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
                         square.classList.remove(this.color);
                     } catch (e) {
-
                     }
                 }
             }
@@ -132,12 +126,14 @@ export class Block {
         return lockedOutOfBorder;
     };
 
-    getX() {
-        return this.x
-    }
-
-    getY() {
-        return this.y;
+    resetBlock(states, color) {
+        this.setState(states);
+        this.setColor(color);
+        this.resetX();
+        this.resetY();
+        this.setIsLockedToFalse();
+        this.setStatesNoTo0();
+        this.setActiveState();
     }
 
     resetY() {
@@ -152,7 +148,7 @@ export class Block {
         this.color = color;
     }
 
-    setState(states){
+    setState(states) {
         this.states = states;
     }
 
@@ -161,7 +157,7 @@ export class Block {
     }
 
     setStatesNoTo0() {
-        this.stateNo =0;
+        this.stateNo = 0;
     }
 
     setActiveState() {

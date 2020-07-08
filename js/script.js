@@ -8,6 +8,11 @@ let controlHandler;
 let game;
 
 (() => {
+    initialize();
+    setInterval(mainLoop, 1000);
+})();
+
+function initialize(){
     const boardHandler = new handlers.BoardHandler();
     boardHandler.createGrid();
     alert("Start game!");
@@ -18,11 +23,8 @@ let game;
     block = BlockFactory.prototype.getRandomBlock();
     nextBlock = BlockFactory.prototype.getRandomBlock2();
     controlHandler = new handlers.ControlHandler(block);
-    block.draw();
     controlHandler.addControlsListener();
-
-    setInterval(mainLoop, 1000);
-})();
+}
 
 
 function mainLoop(){
@@ -35,17 +37,9 @@ function mainLoop(){
             return;
         }
         nextBlock = BlockFactory.prototype.getRandomBlock2();
-        // controlHandler.removeControlsListener();
-        block.setState(nextBlock[1]);
-        block.setColor(nextBlock[0]);
-        // controlHandler = new handlers.ControlHandler(block);
-        block.resetX();
-        block.resetY();
-        block.setIsLockedToFalse();
-        block.setStatesNoTo0();
-        block.setActiveState();
-        block.draw();
-        // controlHandler.addControlsListener();
+        const color = nextBlock[0];
+        const states = nextBlock[1];
+        block.resetBlock(states, color);
     }
 }
 
