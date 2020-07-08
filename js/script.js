@@ -26,9 +26,9 @@ let game;
 
 
 function mainLoop(){
-    block.drop();
+    let canMove = block.moveDown();
     if (block.isLocked) {
-        if (!block.moveDown()) {
+        if (!canMove) {
             game.isRunning = false;
             clearInterval(mainLoop);
             alert("GameOverXD");
