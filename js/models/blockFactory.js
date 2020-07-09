@@ -9,6 +9,6 @@ export class BlockFactory {
 
     getRandomStateAndColor() {
         let randomBlockNo = Math.floor(Math.random() * Object.keys(BLOCK_COLORS).length);
-        return [BLOCK_COLORS[randomBlockNo][1], BLOCK_COLORS[randomBlockNo][0]];
+        return [BLOCK_COLORS[randomBlockNo][0], BLOCK_COLORS[randomBlockNo][1]];
     }
 }
