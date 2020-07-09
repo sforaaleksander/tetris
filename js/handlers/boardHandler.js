@@ -75,7 +75,7 @@ export class BoardHandler {
         let nextBlockDiv = document.getElementById('next-block');
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
-                const squareDiv = this.createSquareDiv(j, i);
+                const squareDiv = this.createSquareDiv(i, j);
                 nextBlockDiv.appendChild(squareDiv);
             }
         }
