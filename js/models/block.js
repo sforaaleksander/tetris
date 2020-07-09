@@ -54,8 +54,11 @@ export class Block {
     rotate() {
         let nextActiveState = this.states[(this.stateNo + 1) % this.states.length];
         let bounceFromWall = 0;
-        if (this.detectCollision(0, 0, nextActiveState)) {
-            bounceFromWall = this.x > COLS / 2 ? -1 : 1; //todo do not work for long one close to right wall
+        if (this.detectCollision(0, 0, nextActiveState) && this.activeState[0].length > 3) {
+            bounceFromWall = this.x > COLS / 2 ? -2 : 1;
+        }
+        else if (this.detectCollision(0, 0, nextActiveState)) {
+            bounceFromWall = this.x > COLS / 2 ? -1 : 1;
         }
         if (!this.detectCollision(bounceFromWall, 0, nextActiveState)) {
             this.unDraw();
