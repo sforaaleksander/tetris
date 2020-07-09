@@ -6,6 +6,7 @@ let block = BlockFactory.prototype.getRandomBlock();
 let nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
 let controlHandler = new handlers.ControlHandler(block);
 let loop = undefined;
+let boardHandler;
 
 export class Game {
     constructor() {
@@ -17,15 +18,16 @@ export class Game {
     }
 
     initialize(){
-        const boardHandler = new handlers.BoardHandler();
+        boardHandler = new handlers.BoardHandler();
         boardHandler.createGrid();
         alert("Start game!");
         handlers.MusicHandler.prototype.musicEventListener()
         controlHandler.addControlsListener();
+        boardHandler.setNextBlock(nextStatesAndColor[0][0],nextStatesAndColor[1]);
     }
 
     mainLoop(){
-        let canMove = block.moveDown();
+        let canMove = block.drop();
         if (block.isLocked) {
             if (!canMove) {
                 clearInterval(loop);
@@ -33,13 +35,16 @@ export class Game {
                 this.isRunning = false;
                 return;
             }
-            nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
-            const color = nextStatesAndColor[0];
-            const states = nextStatesAndColor[1];
+            let states = nextStatesAndColor[0];
+            let color = nextStatesAndColor[1];
             block.resetBlock(states, color);
+
+            nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
+            let state = nextStatesAndColor[0][0];
+            let newColor = nextStatesAndColor[1];
+            boardHandler.refreshNextBlock(state, newColor);
         }
     }
-
 
     startGame(){
         loop = setInterval(this.mainLoop,500);

@@ -12,7 +12,7 @@ export class Block {
         this.isLocked = false;
     }
 
-    moveDown() {
+    drop() {
         console.log('move down');
         if (!this.detectCollision(0, 1, this.activeState)) {
             this.unDraw();
@@ -21,6 +21,16 @@ export class Block {
             return true;
         } else {
             return this.lock();
+        }
+    };
+
+    moveDown() {
+        console.log('move down');
+        if (!this.detectCollision(0, 1, this.activeState)) {
+            this.unDraw();
+            this.y++;
+            this.draw();
+            return true;
         }
     };
 
@@ -112,20 +122,20 @@ export class Block {
     lock() {
         console.log('locking');
         this.isLocked = true;
-        let lockedOnBoard = true;
+        let isLockedOnBoard = true;
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
                     let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
                     square.classList.add("locked");
-                    if (!(this.y + j) > 0) {
-                        lockedOnBoard = false;
+                    if ((this.y + i) < 0) {
+                        isLockedOnBoard = false;
                     }
                 }
             }
         }
         BoardHandler.prototype.checkFullRow();
-        return lockedOnBoard;
+        return isLockedOnBoard;
     };
 
     resetBlock(states, color) {
