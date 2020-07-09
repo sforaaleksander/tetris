@@ -119,8 +119,8 @@ h2, h3, h4, h5, h6 {
 }
 
 #next-block {
-    width: 7.08em;
-    max-height: 7.08em;
+    width: 18vh;
+    max-height: 18vh;
     margin: 0.25em;
     background-color: #796868;
     display: flex;
