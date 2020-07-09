@@ -12,7 +12,7 @@ export class Block {
     }
 
     drop() {
-        console.log('move down');
+        // console.log('move down');
         if (!this.detectCollision(0, 1, this.activeState)) {
             this.unDraw();
             this.y++;
@@ -24,7 +24,7 @@ export class Block {
     };
 
     moveDown() {
-        console.log('move down');
+        // console.log('move down');
         if (!this.detectCollision(0, 1, this.activeState)) {
             this.unDraw();
             this.y++;
@@ -34,7 +34,7 @@ export class Block {
     };
 
     moveRight() {
-        console.log('move right');
+        // console.log('move right');
         if (!this.detectCollision(1, 0, this.activeState)) {
             this.unDraw();
             this.x++;
@@ -43,7 +43,7 @@ export class Block {
     };
 
     moveLeft() {
-        console.log('move left');
+        // console.log('move left');
         if (!this.detectCollision(-1, 0, this.activeState)) {
             this.unDraw();
             this.x--;

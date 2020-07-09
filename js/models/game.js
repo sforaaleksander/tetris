@@ -41,9 +41,7 @@ export class Game {
     }
 
     afterLockedTheBlock() {
-        if (this.isNextLevel()) {
-            this.runNextLevel();
-        }
+
         let clearedRows = handlers.BoardHandler.prototype.checkFullRow();
         if (clearedRows) {
             this.updateStats(clearedRows);
@@ -65,8 +63,8 @@ export class Game {
         this.points += pointsAchieved;
     }
 
-    isNextLevel() {
-        return (this.points - this.level * 1000) > 1000;
+    isLevelNeedToBeUpdated() {
+        return (this.points - this.level * 1000) >= 0;
     }
 
     updateScoreDisplay() {
@@ -76,11 +74,16 @@ export class Game {
         level.innerHTML = this.level;
     }
 
-    runNextLevel(){
-        console.log("NEXT LEVEL");
-        this.level++;
+    updateLevel(){
+        console.log("UPDATE LEVEL");
+        let countLvl = Math.ceil((this.points-(this.level * 1000))/1000) +this.level;
+        console.log('points '+this.points)
+        console.log('lvl '+this.level)
+        console.log('counted lvl  '+countLvl)
+        console.log(this.points/(this.level * 1000))
+        this.level = countLvl;
         clearInterval(loop);
-        loop = setInterval(this.mainLoop.bind(this), 600 - (10 * this.level));
+        loop = setInterval(this.mainLoop.bind(this), 600 - (25 * this.level));
     }
 
     endGame() {
@@ -93,6 +96,9 @@ export class Game {
     updateStats(clearedRows) {
         this.givePoints(clearedRows);
         console.log(this.points);
+        if (this.isLevelNeedToBeUpdated()) {
+            this.updateLevel();
+        }
         this.updateScoreDisplay();
     }
 
