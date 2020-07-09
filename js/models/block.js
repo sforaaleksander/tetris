@@ -125,10 +125,11 @@ export class Block {
         for (let i = 0; i < this.activeState.length; i++) {
             for (let j = 0; j < this.activeState.length; j++) {
                 if (this.activeState[i][j]) {
-                    let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
-                    square.classList.add("locked");
-                    if ((this.y + i) < 0) {
+                    if ((this.y + i) <= 0) {
                         isLockedOnBoard = false;
+                    } else {
+                        let square = document.querySelector(`[x="${this.x + i}"][y="${this.y + j}"]`);
+                        square.classList.add("locked");
                     }
                 }
             }
