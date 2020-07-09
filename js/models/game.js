@@ -2,36 +2,41 @@ import * as handlers from "../handlers/handlersBundle.js";
 import {BlockFactory} from "./blockFactory.js";
 
 
-let block;
-let nextStatesAndColor;
-let controlHandler;
-let loop = undefined;
-let boardHandler;
+// let block;
+
+// let controlHandler;
+// let loop = undefined;
+// let boardHandler;
 
 
 export class Game {
     constructor(restart) {
+        this.nextStatesAndColor;
+        this.loop;
+        this.boardHandler;
+        this.controlHandler;
+        this.block;
         this.level = 1;
         this.points = 0;
         this.restart = restart;
     }
 
     initialize() {
-        block = BlockFactory.prototype.getRandomBlock();
-        nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
-        controlHandler = new handlers.ControlHandler(block);
+        this.block = BlockFactory.prototype.getRandomBlock();
+        this.nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
+        this.controlHandler = new handlers.ControlHandler(this.block);
 
-        boardHandler = new handlers.BoardHandler();
-        boardHandler.createGrid();
+        this.boardHandler = new handlers.BoardHandler();
+        this.boardHandler.createGrid();
         alert("Start game!");
         handlers.MusicHandler.prototype.musicEventListener()
-        controlHandler.addControlsListener();
-        boardHandler.setNextBlock(nextStatesAndColor[0][0], nextStatesAndColor[1]);
+        this.controlHandler.addControlsListener();
+        this.boardHandler.setNextBlock(this.nextStatesAndColor[0][0], this.nextStatesAndColor[1]);
     }
 
     mainLoop() {
-        let canMove = block.drop();
-        if (block.isLocked) {
+        let canMove = this.block.drop();
+        if (this.block.isLocked) {
             if (!canMove) {
                 this.endGame();
                 return;
@@ -51,7 +56,7 @@ export class Game {
     }
 
     startGame() {
-        loop = setInterval(this.mainLoop.bind(this), 600);
+        this.loop = setInterval(this.mainLoop.bind(this), 600);
     }
 
     givePoints(clearedRows) {
@@ -67,11 +72,11 @@ export class Game {
         return (this.points - this.level * 1000) >= 0;
     }
 
-    updateScoreDisplay() {
-        const score = document.getElementById("game-score");
-        const level = document.getElementById("game-level");
-        score.innerHTML = this.points;
-        level.innerHTML = this.level;
+    updateScoreDisplay(level, points) {
+        const scoreDiv = document.getElementById("game-score");
+        const levelDiv = document.getElementById("game-level");
+        scoreDiv.innerHTML = points;
+        levelDiv.innerHTML = level;
     }
 
     updateLevel(){
@@ -82,13 +87,13 @@ export class Game {
         console.log('counted lvl  '+countLvl)
         console.log(this.points/(this.level * 1000))
         this.level = countLvl;
-        clearInterval(loop);
-        loop = setInterval(this.mainLoop.bind(this), 600 - (25 * this.level));
+        clearInterval(this.loop);
+        this.loop = setInterval(this.mainLoop.bind(this), 600 - (25 * this.level));
     }
 
     endGame() {
         console.log("CANT MOVE");
-        clearInterval(loop);
+        clearInterval(this.loop);
         alert("GameOverXD");
         this.askToPlayAgain();
     }
@@ -99,20 +104,20 @@ export class Game {
         if (this.isLevelNeedToBeUpdated()) {
             this.updateLevel();
         }
-        this.updateScoreDisplay();
+        this.updateScoreDisplay(this.level, this.points);
     }
 
     updateBlockObject() {
-        let states = nextStatesAndColor[0];
-        let color = nextStatesAndColor[1];
-        block.resetBlock(states, color);
+        let states = this.nextStatesAndColor[0];
+        let color = this.nextStatesAndColor[1];
+        this.block.resetBlock(states, color);
     }
 
     refreshNextBlockDisplay() {
-        nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
-        let state = nextStatesAndColor[0][0];
-        let newColor = nextStatesAndColor[1];
-        boardHandler.refreshNextBlock(state, newColor);
+        this.nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
+        let state = this.nextStatesAndColor[0][0];
+        let newColor = this.nextStatesAndColor[1];
+        this.boardHandler.refreshNextBlock(state, newColor);
     }
 
     askToPlayAgain() {
@@ -122,8 +127,9 @@ export class Game {
         }
     }
 
-    resetGame(){
-        block = undefined;
+    resetGame() {
+        this.block.color = 'white';
+        this.updateScoreDisplay(1,0)
         let squares = document.querySelectorAll('.square');
         squares.forEach((e)=>e.remove());
     }
