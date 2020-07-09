@@ -13,7 +13,6 @@ export class Game {
     constructor() {
         this.level = 1;
         this.points = 0;
-        this.isRunning = true;
         this.initialize();
         this.startGame();
     }
@@ -85,7 +84,6 @@ export class Game {
         console.log("CANT MOVE");
         clearInterval(loop);
         alert("GameOverXD");
-        this.isRunning = false;
     }
 
     updateStats(clearedRows) {
