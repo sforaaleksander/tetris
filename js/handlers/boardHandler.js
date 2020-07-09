@@ -52,6 +52,7 @@ export class BoardHandler {
     };
 
     checkFullRow() {
+        let clearedRows = 0;
         for (let i = ROWS-1; i >= 0; i--) {
             let fullRow = true;
             for (let j = COLS-1; j >= 0; j--) {
@@ -67,8 +68,10 @@ export class BoardHandler {
                 this.insertBlankRow();
                 this.recalculateCoords();
                 i++;
+                clearedRows++;
             }
         }
+        return clearedRows;
     };
 
     setNextBlock(state,color){
