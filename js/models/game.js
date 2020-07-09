@@ -2,22 +2,25 @@ import * as handlers from "../handlers/handlersBundle.js";
 import {BlockFactory} from "./blockFactory.js";
 
 
-let block = BlockFactory.prototype.getRandomBlock();
-let nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
-let controlHandler = new handlers.ControlHandler(block);
+let block;
+let nextStatesAndColor;
+let controlHandler;
 let loop = undefined;
 let boardHandler;
 
 
 export class Game {
-    constructor() {
+    constructor(restart) {
         this.level = 1;
         this.points = 0;
-        this.initialize();
-        this.startGame();
+        this.restart = restart;
     }
 
     initialize() {
+        block = BlockFactory.prototype.getRandomBlock();
+        nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
+        controlHandler = new handlers.ControlHandler(block);
+
         boardHandler = new handlers.BoardHandler();
         boardHandler.createGrid();
         alert("Start game!");
@@ -84,6 +87,7 @@ export class Game {
         console.log("CANT MOVE");
         clearInterval(loop);
         alert("GameOverXD");
+        this.askToPlayAgain();
     }
 
     updateStats(clearedRows) {
@@ -103,5 +107,18 @@ export class Game {
         let state = nextStatesAndColor[0][0];
         let newColor = nextStatesAndColor[1];
         boardHandler.refreshNextBlock(state, newColor);
+    }
+
+    askToPlayAgain() {
+        if(confirm("Play again?")){
+            this.resetGame();
+            this.restart();
+        }
+    }
+
+    resetGame(){
+        block = undefined;
+        let squares = document.querySelectorAll('.square');
+        squares.forEach((e)=>e.remove());
     }
 }
