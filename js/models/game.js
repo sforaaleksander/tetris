@@ -31,30 +31,23 @@ export class Game {
         let canMove = block.drop();
         if (block.isLocked) {
             if (!canMove) {
-                clearInterval(loop);
-                alert("GameOverXD");
-                this.isRunning = false;
+                this.endGame();
                 return;
             }
-            if (this.isNextLevel()) {
-                console.log("NEXT LEVEL");
-                this.level++;
-                clearInterval(loop);
-                loop = setInterval(this.mainLoop.bind(this), 600 - (10 * this.level));
-            }
-            let clearedRows = handlers.BoardHandler.prototype.checkFullRow();
-            this.givePoints(clearedRows);
-            console.log(this.points);
-            this.updateScore();
-            let states = nextStatesAndColor[0];
-            let color = nextStatesAndColor[1];
-            block.resetBlock(states, color);
-
-            nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
-            let state = nextStatesAndColor[0][0];
-            let newColor = nextStatesAndColor[1];
-            boardHandler.refreshNextBlock(state, newColor);
+            this.afterLockedTheBlock();
         }
+    }
+
+    afterLockedTheBlock() {
+        if (this.isNextLevel()) {
+            this.runNextLevel();
+        }
+        let clearedRows = handlers.BoardHandler.prototype.checkFullRow();
+        if (clearedRows) {
+            this.updateStats(clearedRows);
+        }
+        this.updateBlockObject();
+        this.refreshNextBlockDisplay();
     }
 
     startGame() {
@@ -71,13 +64,46 @@ export class Game {
     }
 
     isNextLevel() {
-         return (this.points - this.level * 1000) > 1000;
+        return (this.points - this.level * 1000) > 1000;
     }
 
-    updateScore() {
+    updateScoreDisplay() {
         const score = document.getElementById("game-score");
         const level = document.getElementById("game-level");
         score.innerHTML = this.points;
         level.innerHTML = this.level;
+    }
+
+    runNextLevel(){
+        console.log("NEXT LEVEL");
+        this.level++;
+        clearInterval(loop);
+        loop = setInterval(this.mainLoop.bind(this), 600 - (10 * this.level));
+    }
+
+    endGame() {
+        console.log("CANT MOVE");
+        clearInterval(loop);
+        alert("GameOverXD");
+        this.isRunning = false;
+    }
+
+    updateStats(clearedRows) {
+        this.givePoints(clearedRows);
+        console.log(this.points);
+        this.updateScoreDisplay();
+    }
+
+    updateBlockObject() {
+        let states = nextStatesAndColor[0];
+        let color = nextStatesAndColor[1];
+        block.resetBlock(states, color);
+    }
+
+    refreshNextBlockDisplay() {
+        nextStatesAndColor = BlockFactory.prototype.getRandomStateAndColor();
+        let state = nextStatesAndColor[0][0];
+        let newColor = nextStatesAndColor[1];
+        boardHandler.refreshNextBlock(state, newColor);
     }
 }
