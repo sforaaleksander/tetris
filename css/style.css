@@ -109,7 +109,7 @@ h2, h3, h4, h5, h6 {
 
 .yellow-box {
     width: 20vw;
-    height: 10vw;
+    height: 25vh;
     background-color: #DBCA9E;
     color: #9C6969;
 }
@@ -119,8 +119,8 @@ h2, h3, h4, h5, h6 {
 }
 
 #next-block {
-    width: 7em;
-    height: 7em;
+    width: 7.08em;
+    max-height: 7.08em;
     margin: 0.25em;
     background-color: #796868;
     display: flex;
