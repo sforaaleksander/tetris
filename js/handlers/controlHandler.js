@@ -16,9 +16,4 @@ export class ControlHandler {
         });
     }
 
-    removeControlsListener(){
-        document.removeEventListener('keydown', (e) => {
-            this.arrows[e.keyCode]();
-        });
-    }
 }
