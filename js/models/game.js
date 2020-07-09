@@ -1,14 +1,6 @@
 import * as handlers from "../handlers/handlersBundle.js";
 import {BlockFactory} from "./blockFactory.js";
 
-
-// let block;
-
-// let controlHandler;
-// let loop = undefined;
-// let boardHandler;
-
-
 export class Game {
     constructor(restart) {
         this.nextStatesAndColor;
