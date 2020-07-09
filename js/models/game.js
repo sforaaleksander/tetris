@@ -57,7 +57,7 @@ export class Game {
     }
 
     givePoints(clearedRows) {
-        let pointsAchieved = clearedRows * (this.level + this.level / 4) * 100;
+        let pointsAchieved = clearedRows * ((5*this.level/4) * 100);
         if (clearedRows >= 4) {
             pointsAchieved += 999;
         }
