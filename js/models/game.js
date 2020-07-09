@@ -25,7 +25,6 @@ export class Game {
         handlers.MusicHandler.prototype.musicEventListener()
         controlHandler.addControlsListener();
         boardHandler.setNextBlock(nextStatesAndColor[0][0], nextStatesAndColor[1]);
-        this.updateScore();
     }
 
     mainLoop() {
