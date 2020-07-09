@@ -11,9 +11,12 @@ export class ControlHandler {
     }
 
     addControlsListener() {
-        document.addEventListener('keydown', (e) => {
-            this.arrows[e.keyCode]();
-        });
+        try {
+            document.addEventListener('keydown', (e) => {
+                this.arrows[e.keyCode]();
+            })
+        } catch (e) {
+            console.log("Invalid key pressed. Please use arrows to move");
+        }
     }
-
 }
