@@ -14,10 +14,5 @@ const run = ()=> {
 
 })();
 
-// function play(){
-//     runGame();
-//     if (!game.playAgain){
-//         clearInterval(loop)
-//     }
 
 
